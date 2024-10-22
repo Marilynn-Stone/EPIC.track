@@ -25,7 +25,7 @@ services:
     links:
       - eao-reports-api-db
     ports:
-      - '3002:8080'
+      - '3200:8080'
     environment:
       - JWT_OIDC_ISSUER:${JWT_OIDC_ISSUER}
       - JWT_OIDC_WELL_KNOWN_CONFIG:${JWT_OIDC_WELL_KNOWN_CONFIG}
@@ -37,7 +37,7 @@ services:
       - DATABASE_USERNAME:${DATABASE_USERNAME}
       - DATABASE_PASSWORD:${DATABASE_PASSWORD}
       - DATABASE_NAME:${DATABASE_NAME}
-      - DATABASE_HOST:${DATABASE_HOST}
+      - DATABASE_HOST:${DATABASE_HOST:-eao-reports-api-db}
       - DATABASE_PORT:${DATABASE_PORT}
       - FLASK_APP:${FLASK_APP:-wsgi.py}
       - FLASK_ENV:${FLASK_ENV:-'production'}
@@ -48,7 +48,6 @@ services:
 
     networks:
       - eao-network
-    
 
 networks:
   eao-network:
